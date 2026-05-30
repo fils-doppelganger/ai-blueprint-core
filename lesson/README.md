@@ -8,6 +8,7 @@ So DAIR.AI Academy released some plugins/skills for generating lessons from
 documents.  See https://github.com/dair-ai/dair-academy-plugins.
 
 So, after installing them,  I used the [lesson-generator](https://github.com/dair-ai/dair-academy-plugins/tree/main/plugins/lesson-generator) and tried this:
+
 > using the file @docs/NIAID_Blueprint_v2_26Sep2025_forExternal.md create
 >  an interactive study guide using the lesson-generator
 
