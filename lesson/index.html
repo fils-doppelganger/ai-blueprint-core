@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NIAID Blueprint — Interactive Study Guide</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-brand">
+    <h1>NIAID Blueprint for Digital Objects</h1>
+    <div class="subtitle">Interactive Study Guide</div>
+  </div>
+  <div class="header-progress">
+    <div class="progress-bar-outer">
+      <div class="progress-bar-inner" id="progress-bar"></div>
+    </div>
+    <span id="progress-label">0/6 lessons complete</span>
+  </div>
+</header>
+
+<div class="app-layout">
+  <nav class="sidebar" aria-label="Lesson navigation">
+    <div class="sidebar-label">Course Lessons</div>
+    <div id="lesson-sidebar"></div>
+  </nav>
+
+  <main class="main-content">
+    <div class="course-overview">
+      <h2>NIAID Blueprint for Digital Objects</h2>
+      <p>
+        A six-lesson course for data generators and repository owners working in NIAID-funded
+        infectious and immune-mediated disease (IID) research. Covers FAIR principles, metadata
+        schemas, persistent identifiers, API standards, citation practices, and outreach requirements.
+      </p>
+      <button class="start-btn" onclick="goToLesson(0)">Start Learning &rarr;</button>
+    </div>
+
+    <div id="lesson-content"></div>
+    <div id="final-quiz-section" class="hidden"></div>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -49,7 +49,7 @@ Figure 1. Graphic overview of Blueprint elements and potential impact. Digital o
 1  A digital object is a sequence of bits representing information, identified by a persistent identifier, and described by metadata, RDA.
 
 2  (Hughes et al., 2023; Musen, 2022; Tsueng et al., 2023)
-
+--image-export-mode
 3  (Wilkinson et al., 2016)
 
 The Blueprint serves as a foundational starting point for NIAID data resources, providing a minimal set of specifications. It is not intended to fully meet the unique needs of each repository. Instead, the primary goals of the NIAID Blueprint are to: 1) align NIAID resources under a shared framework; 2) support prospective data capture for data generators and define structured elements that data repository owners should capture from their contributors; and 3) create a flexible framework that integrates with the broader NIAID ecosystem of digital objects, including the NIAID Data Ecosystem Discovery Portal. To achieve these goals, the NIAID Blueprint is organized into five key areas outlined below.
