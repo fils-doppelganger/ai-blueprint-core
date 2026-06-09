@@ -4,47 +4,61 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Purpose
 
-`ai-blueprint-core` is a Python project building AI agent tooling for the NIAID Blueprint for Digital Objects — a FAIR data initiative by NIAID/ODSET that specifies minimal metadata schemas, persistent identifiers, API standards, and citation practices for NIAID-funded research data repositories.
+`ai-blueprint-core` builds AI agent tooling to help NIAID-funded data repositories implement the NIAID Blueprint for Digital Objects — a FAIR data initiative by NIAID/ODSET that specifies minimal metadata schemas, persistent identifiers, API standards, and citation practices.
 
-The project uses LLM agents (guided by prompts in `prompts/`) to help users and repository owners implement the Blueprint's five key areas: metadata schema, PIDs, APIs, citation, and outreach.
+The repository is **content-first, not code-first**: its primary deliverables are Claude Code *skills* and LLM *prompt personas*, not a Python application. The Python tooling that exists is for document conversion (PDF→Markdown) and for an LLM-driven document-analysis script. There is no `main.py` and nothing to "build" or "run" in the conventional sense.
+
+## How the pieces fit together
+
+The repo offers three ways to apply the Blueprint, layered from most to least integrated with Claude Code:
+
+1. **Claude Code skills** (`.claude/skills/`) — the main deliverable. Auto-loaded when Claude Code opens in this project. See below.
+2. **Prompt personas** (`prompts/`) — standalone system prompts for the "flipped interaction" pattern: paste one into any modern LLM and it drives the conversation, interviewing the user and producing an artifact. These are model-agnostic (used outside Claude Code too).
+3. **DSPy RLM script** (`secret/rv2.py`) — runnable Python that analyzes a directory of Markdown docs and writes a report. `secret/` is **gitignored** (contains source work-plan PDFs and outputs).
+
+The same domain logic often appears in more than one layer (e.g. FAIR assessment exists as both the `fair-assess` skill and the `fairAssessmentInterview.md` prompt). When changing assessment/intake behavior, check whether a parallel copy needs the same change.
+
+## Claude Code skills (`.claude/skills/`)
+
+Each skill follows the standard layout: a `SKILL.md` (frontmatter + persona + flow) plus `references/` (loaded on demand during the interview) and `assets/` (templates/skeletons). The skills are **interview-driven**: they ask one or two questions at a time and progressively load reference files rather than front-loading everything.
+
+- **`fair-assess`** — six-phase Blueprint FAIR assessment interview → prioritized gap report. Phases and question sets live in `references/interview-phases.md`; output uses `assets/report-template.md`. Priority rules (High/Medium/Low) are defined in the SKILL.
+- **`dataset-intake`** — conversational metadata interview across five element groups (identity, provenance, content, access, context) → valid schema.org `Dataset` JSON-LD. Element questions/formats in `references/element-guide.md`; JSON-LD assembly guided by `references/jsonld-structure.md` + `assets/blank-dataset.jsonld`. `references/pid-help.md` walks users through finding PIDs (ORCID, ROR, NCBITaxon, MONDO, SPDX).
+
+When editing a skill, keep the `SKILL.md` frontmatter (`name`, `description`, `when_to_use`) accurate — that text is what triggers the skill — and remember reference files are read mid-interview, so their structure is load-bearing.
+
+## Prompts (`prompts/`)
+
+- `fairAssessmentInterview.md` — standalone version of the FAIR assessment interview (flipped-interaction prompt).
+- `contextPrompt.md` / `contextPromptShort.md` — Blueprint context primers for grounding a model.
+- `workPlanInterview.md` / `workPlanSpec.md` — interview + spec for producing repository work plans.
+- `fairAssessorAgentOpenCode.md` — pointer/config for the OpenCode agent variant (`.opencode/agent/fair-resource-assessor.md`).
 
 ## Development Commands
 
-This project uses [`uv`](https://docs.astral.sh/uv/) for dependency and environment management (Python 3.13).
+Uses [`uv`](https://docs.astral.sh/uv/) (Python 3.13).
 
 ```bash
-# Install dependencies and sync environment
-uv sync
+uv sync                  # install/sync the environment
+uv add <package>         # add a dependency
 
-# Run the main entry point
-uv run main.py
+# Run the DSPy RLM document analyzer (gitignored; needs NRP_API_KEY or OPENROUTER_API_KEY)
+uv run secret/rv2.py --prompt-file prompts/contextPrompt.md
+uv run secret/rv2.py --prompt-file prompt.md --backend openrouter
 
-# Add a new dependency
-uv add <package>
-
-# Run a script directly
-uv run <script>.py
+# Serve the proof-of-concept interactive lesson
+cd lesson && python -m http.server 8000   # then open http://localhost:8000
 ```
 
-## Architecture
-
-- **`main.py`** — entry point (currently a stub; feature code goes here or in modules imported here)
-- **`prompts/`** — system prompts for AI agent personas:
-  - `archInterview.md` — 10-phase agent architect persona; guides users through designing production-grade AI agents (discovery → cognitive architecture → orchestration → tools → grounding → prompts → implementation → testing → deployment → delivery)
-  - `interview.md` — non-technical user interview persona; conducts discovery conversations and outputs a project `CLAUDE.md`
-- **`docs/`** — NIAID Blueprint reference document (PDF + Markdown conversion via `marker-pdf`/`docling`)
+`rv2.py` does **not** read files from the sandbox filesystem — it injects host-side helpers (`list_markdown_files`, `read_markdown`, `grep_markdown`, `save_report`, `SUBMIT`) into the RLM's REPL globals. See `secret/USE.md`.
 
 ## Key Dependencies
 
-- **`docling`** — document understanding and extraction (structured parsing of PDFs/docs)
-- **`marker-pdf`** — high-quality PDF-to-Markdown conversion (used to produce `docs/*.md` from blueprint PDFs)
-
-Both are heavy ML-based libraries; expect significant `.venv` size and first-run model downloads.
+- **`dspy`** — used by `secret/rv2.py` for the RLM (Recursive Language Model) document-analysis loop.
+- **`docling`** / **`marker-pdf`** — PDF→Markdown conversion used to produce `docs/*.md` from Blueprint PDFs. Heavy ML libraries: expect a large `.venv` and model downloads on first run.
 
 ## Domain Context
 
-The NIAID Blueprint (`docs/NIAID_Blueprint_v2_26Sep2025_forExternal.md`) is the authoritative spec. Key concepts:
-- **FAIR principles** — Findable, Accessible, Interoperable, Reusable
-- **Digital objects** — data, software, methods, workflows produced by NIAID-funded research
-- **PIDs** — persistent identifiers (e.g., ORCIDs for researchers, DOIs for datasets)
-- **NIAID Data Ecosystem Discovery Portal** — the target discovery system repositories feed into
+The authoritative spec is `docs/NIAID_Blueprint_v2_26Sep2025_forExternal.md` (converted from the PDF). Raw link for passing to a model: `https://raw.githubusercontent.com/go-fair-us/ai-blueprint-core/refs/heads/master/docs/NIAID_Blueprint_v2_26Sep2025_forExternal.md`
+
+The Blueprint's five areas drive nearly every skill/prompt: **metadata schema** (schema.org elements), **persistent identifiers** (DOI, ORCID, ROR, RRID, ontology terms), **APIs/machine access** (JSON-LD, OpenAPI), **citation**, and **outreach/training**. Repositories ultimately feed the **NIAID Data Ecosystem Discovery Portal**.

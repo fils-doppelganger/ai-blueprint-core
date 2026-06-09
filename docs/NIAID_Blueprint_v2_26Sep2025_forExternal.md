@@ -1,4 +1,4 @@
-This is a living document and will be continually updated. If you have any questions or concerns, please contact datascience@niaid.nih.gov.
+This is a living document and will be continually updated. If you have any questions or concerns, please contact datascience@niaid.nih.gov. 
 
 ## A Blueprint for Including Digital Objects in the NIAID Data Ecosystem
 
