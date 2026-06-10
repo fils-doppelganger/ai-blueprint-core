@@ -9,3 +9,16 @@ dependencies = [
     "dspy>=3.2.1",
     "marker-pdf>=1.10.2",
 ]
+
+[project.optional-dependencies]
+mcp = [
+    "fastembed>=0.4",
+    "fastmcp>=2.0",
+    "rank-bm25>=0.2",
+    "rapidfuzz>=3.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
