@@ -1,0 +1,70 @@
+commit 4f72100fb55d604f6617e1fda47340ced7fa8cc2
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Sat May 30 15:43:33 2026 -0500
+
+    Add README for NIAID Blueprint Claude skills
+
+commit 816696645701246ef4061d10800c20c08a53d839
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Sat May 30 15:38:04 2026 -0500
+
+    Add dataset-intake and fair-assess Claude skills
+    
+    Introduce two new skills under .claude/skills for NIAID Blueprint
+    workflows: conversational dataset metadata collection (producing
+    schema.org JSON-LD) and structured FAIR assessment interviews with gap
+    reporting. Includes supporting references, templates, and PID guidance.
+
+commit 7337080aae82abb7801f729abc9010b93be9a74a
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Sat May 30 13:50:52 2026 -0500
+
+    Update lesson README with links and clarifications
+
+commit c9290faab363ea45224e05425f443f09c7afec49
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Sat May 30 07:29:16 2026 -0500
+
+    Add interactive NIAID Blueprint lesson and dspy dependency
+    
+    - Add lesson/ with interactive study guide (HTML/JS/CSS) covering all 6
+      Blueprint topics
+    - Add dspy>=3.2.1 dependency
+    - Ignore JetBrains IDE files
+    - Minor doc artifact fix
+
+commit 23bbb676f4cc6b7a67ca303013305b587658365a
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Thu May 21 13:54:12 2026 -0500
+
+    add gitignore
+
+commit 99bf027427d7ae08d836950f0686820c6f1d7162
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Thu May 21 01:24:48 2026 -0500
+
+    add Blueprint-based context prompts for repository alignment guidance
+
+commit 9f1986994aef0c7bac7c6de8bd877316ba1f37a5
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Wed May 20 08:53:31 2026 -0500
+
+    update README to include flipped interaction pattern and additional usage guidelines
+
+commit dd6fb216aa58ab76383ed461365786d86f2f02ed
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Tue May 19 22:28:30 2026 -0500
+
+    update README file
+
+commit 21dd9d01b87ce20fb3c3b2285918dbb5083c75fc
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Tue May 19 22:25:16 2026 -0500
+
+    second commit with some initial files
+
+commit fcd89dc964e344b511d7e785ca99bf8d8c9d68a2
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Tue May 19 21:40:54 2026 -0500
+
+    first commit

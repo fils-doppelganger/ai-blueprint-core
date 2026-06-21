@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "Dataset",
+  "@id": "",
+  "name": "mega dataset",
+  "description": "This dataset contains genomic sequences from HIV infected patients",
+  "dateCreated": "2026-05-30",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Douglas Fils"
+    }
+  ],
+  "funder": [
+    {
+      "@type": "Organization",
+      "name": "National Institute of Allergy and Infectious Diseases",
+      "alternateName": "NIAID",
+      "url": "https://ror.org/043z4tv69"
+    }
+  ],
+  "grant": ["R01AI123456"]
+}
