@@ -1,0 +1,104 @@
+commit 3f860482a6c13224b9b8ec9eae37c0c5c082a599
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Tue Jun 9 21:10:13 2026 -0500
+
+    Add mcp_bp package: hybrid BM25+semantic MCP server for Blueprint corpus
+    
+    Replaces the abandoned mcp/ prototype with a production-ready mcp_bp package.
+    Key additions:
+    
+    - Hybrid search (hybrid_search.py): section-level BM25 via rank-bm25, optional
+      fastembed semantic embeddings (BAAI/bge-small-en-v1.5), fused with RRF.
+      Enabled with BLUEPRINT_SEMANTIC_ENABLED=1; BM25-only by default.
+    - New tools: get_blueprint_requirements (pillar-based requirement extraction),
+      get_context_window (line-level context expansion), kb_stats (corpus stats).
+    - ToolAnnotations (readOnlyHint, idempotentHint) on all tools.
+    - ResourcesAsTools transform so clients without resource-protocol support
+      (e.g. Claude Code) can access docs and Blueprint content via tools.
+    - search_docs adds collection filter ("docs"/"prompts") and returns richer
+      results: chunk_id, section_number, section_title, excerpt, rrf_score.
+    - pyproject.toml: adds rank-bm25 and fastembed to the mcp optional extra.
+    - 30 tests passing (9 new hybrid search tests).
+    
+    Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+
+commit 5632e40e2fdd364267684f6e860f0b4df1dac68d
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Tue Jun 9 09:13:04 2026 -0500
+
+    Add FAIR assessment and work plan facilitator prompts, Hermes fair-assessor skill, and example output
+    
+    - Introduce comprehensive prompts for FAIR alignment assessment and NIAID work plan facilitation, including intake interview specifications and actionable work plan structures.
+    - Add Hermes agent skill (`fair-assessor`) for evaluating web resource compliance with FAIR principles against a blueprint, with detailed example output.
+    - Include supporting documentation and installation instructions in the README.
+
+commit 4f72100fb55d604f6617e1fda47340ced7fa8cc2
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Sat May 30 15:43:33 2026 -0500
+
+    Add README for NIAID Blueprint Claude skills
+
+commit 816696645701246ef4061d10800c20c08a53d839
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Sat May 30 15:38:04 2026 -0500
+
+    Add dataset-intake and fair-assess Claude skills
+    
+    Introduce two new skills under .claude/skills for NIAID Blueprint
+    workflows: conversational dataset metadata collection (producing
+    schema.org JSON-LD) and structured FAIR assessment interviews with gap
+    reporting. Includes supporting references, templates, and PID guidance.
+
+commit 7337080aae82abb7801f729abc9010b93be9a74a
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Sat May 30 13:50:52 2026 -0500
+
+    Update lesson README with links and clarifications
+
+commit c9290faab363ea45224e05425f443f09c7afec49
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Sat May 30 07:29:16 2026 -0500
+
+    Add interactive NIAID Blueprint lesson and dspy dependency
+    
+    - Add lesson/ with interactive study guide (HTML/JS/CSS) covering all 6
+      Blueprint topics
+    - Add dspy>=3.2.1 dependency
+    - Ignore JetBrains IDE files
+    - Minor doc artifact fix
+
+commit 23bbb676f4cc6b7a67ca303013305b587658365a
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Thu May 21 13:54:12 2026 -0500
+
+    add gitignore
+
+commit 99bf027427d7ae08d836950f0686820c6f1d7162
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Thu May 21 01:24:48 2026 -0500
+
+    add Blueprint-based context prompts for repository alignment guidance
+
+commit 9f1986994aef0c7bac7c6de8bd877316ba1f37a5
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Wed May 20 08:53:31 2026 -0500
+
+    update README to include flipped interaction pattern and additional usage guidelines
+
+commit dd6fb216aa58ab76383ed461365786d86f2f02ed
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Tue May 19 22:28:30 2026 -0500
+
+    update README file
+
+commit 21dd9d01b87ce20fb3c3b2285918dbb5083c75fc
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Tue May 19 22:25:16 2026 -0500
+
+    second commit with some initial files
+
+commit fcd89dc964e344b511d7e785ca99bf8d8c9d68a2
+Author: Douglas Fils <drfils@gmail.com>
+Date:   Tue May 19 21:40:54 2026 -0500
+
+    first commit

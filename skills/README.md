@@ -1,6 +1,6 @@
 # NIAID Blueprint Claude Skills
 
-Two Claude Code skills for working with the [NIAID Blueprint for Digital Objects](../docs/NIAID_Blueprint_v2_26Sep2025_forExternal.md). Skills are installed automatically when Claude Code is opened in this project.
+Three Claude Code skills for working with the [NIAID Blueprint for Digital Objects](../docs/NIAID_Blueprint_v2_26Sep2025_forExternal.md). Skills are installed automatically when Claude Code is opened in this project.
 
 ---
 
@@ -38,9 +38,26 @@ The interview can be stopped early with "make the record with what you have" —
 
 ---
 
+## `/blueprint-metadata-extract` — URL Metadata Extraction
+
+Fetches a web resource URL and extracts Blueprint-aligned schema.org JSON-LD metadata by analyzing the page. No interview — the agent retrieves evidence from the web.
+
+**Use when:** You have a dataset or resource landing-page URL and want a draft JSON-LD record without manually answering intake questions.
+
+**How to invoke:**
+```
+/blueprint-metadata-extract https://immport.org/shared/study/SDY998
+```
+
+**Output:** Resource summary, a JSON-LD code block, and metadata notes (found / inferred / missing fields, unresolved PIDs, confidence). Authoritative references are fetched from GitHub raw URLs at run time.
+
+See also: `docs/metadataGeneration.md`
+
+---
+
 ## Skill files
 
-Both skills live in `.claude/skills/` and follow the standard Claude Code skill layout:
+All three skills live in `.claude/skills/` and follow the standard Claude Code skill layout:
 
 ```
 .claude/skills/
@@ -52,12 +69,16 @@ Both skills live in `.claude/skills/` and follow the standard Claude Code skill 
 │   │   └── gap-patterns.md
 │   └── assets/
 │       └── report-template.md
-└── dataset-intake/
+├── dataset-intake/
+│   ├── SKILL.md
+│   ├── references/
+│   │   ├── element-guide.md
+│   │   ├── pid-help.md
+│   │   └── jsonld-structure.md
+│   └── assets/
+│       └── blank-dataset.jsonld
+└── blueprint-metadata-extract/
     ├── SKILL.md
-    ├── references/
-    │   ├── element-guide.md
-    │   ├── pid-help.md
-    │   └── jsonld-structure.md
-    └── assets/
-        └── blank-dataset.jsonld
+    └── references/
+        └── extraction-workflow.md
 ```
