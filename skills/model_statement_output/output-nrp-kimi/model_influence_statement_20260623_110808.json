@@ -1,0 +1,34 @@
+{
+  "workTitle": "model influence skill development",
+  "authors": "Doug Fils",
+  "usedModel": "yes",
+  "disclosureScope": "single",
+  "models": [
+    {
+      "modelName": "Composer 2.5 Fast",
+      "author": "Cursor",
+      "version": "2.5 Fast",
+      "descriptionLink": "https://cursor.com/docs/models/cursor-composer-2-5",
+      "license": "Proprietary",
+      "task": "code generation",
+      "co2Emissions": "unknown",
+      "paperLink": "unknown",
+      "baseModel": "unknown",
+      "pid": "unknown"
+    }
+  ],
+  "trainingOpenSource": "unknown",
+  "trainingProprietary": "unknown",
+  "trainingLicensed": "unknown",
+  "roles": [
+    "Software",
+    "Validation"
+  ],
+  "customRoles": "",
+  "whatElse": "nothing",
+  "shareCriticalPrompt": "yes",
+  "criticalPrompt": "/goal build a skill that replicates the development of a model influence statement as defined by the site https://model-influence-statement-generator.netlify.app/ which is built from the code at https://github.com/pengyin-shan/Model-Influence-Statement",
+  "ethics": "The biggest ethical consideration is the act of using an agent to basically replicate someone else's work in new context. Is this proper open source process, or should it have been a pull request to the original repo",
+  "finalSignature": "Doug Fils",
+  "finalDate": "06/23/2026"
+}
