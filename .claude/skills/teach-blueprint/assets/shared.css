@@ -1,0 +1,45 @@
+/* teach-blueprint shared stylesheet
+   Based on the existing lesson/ POC with Tufte-inspired clean typography */
+
+:root {
+  --primary: #1a365d;
+  --accent: #2b6cb0;
+  --bg: #f8fafc;
+  --text: #1a202c;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  max-width: 860px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.lesson-header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.quiz-container {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.progress-bar {
+  height: 8px;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
