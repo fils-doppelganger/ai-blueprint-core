@@ -1,8 +1,9 @@
 # Teaching Phases for teach-blueprint
 
 ## Phase 0: Mission & Workspace Setup
-- Confirm or create `MISSION.md`
-- Establish `RESOURCES.md` and initial `GLOSSARY.md`
+- Confirm or create `MISSION.md` (`formats/MISSION-FORMAT.md`, `MISSION-EXAMPLE.md`)
+- Establish `RESOURCES.md` from `formats/RESOURCES-FORMAT.md` (bootstrap list) and initial `GLOSSARY.md`
+- Create `reference/` when first cheat sheet is needed (`reference/README.md`)
 - Determine learner role(s)
 
 ## Phase 1: Knowledge Foundation

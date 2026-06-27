@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 0001 — Introduction to the NIAID Blueprint</title>
+  <link rel="stylesheet" href="../assets/shared.css">
+  <style>
+    .subtitle { color: #4a5568; margin-top: 0.25rem; }
+    .areas { display: grid; gap: 0.75rem; margin: 1rem 0; }
+    .area-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.75rem 1rem; }
+    .cite { font-size: 0.9rem; color: #4a5568; }
+    .quiz-option { display: block; margin: 0.5rem 0; padding: 0.5rem; cursor: pointer; }
+    .quiz-option input { margin-right: 0.5rem; }
+    .feedback { margin-top: 1rem; font-weight: 500; }
+    .callout { background: #ebf8ff; border-left: 4px solid #2b6cb0; padding: 1rem; margin: 1.5rem 0; }
+  </style>
+</head>
+<body>
+  <header class="lesson-header">
+    <h1>Lesson 0001: Introduction to the NIAID Blueprint</h1>
+    <p class="subtitle">Purpose, audience, and the five areas—one clear map for your mission.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Learning objective</h2>
+      <p>After this lesson you can name <strong>why</strong> the Blueprint exists, <strong>who</strong> it serves, and the <strong>five areas</strong> you will implement—tied to your <code>MISSION.md</code>.</p>
+    </section>
+
+    <section>
+      <h2>Why the Blueprint exists</h2>
+      <p>NIAID-funded repositories and data generators need a shared way to describe digital research objects so they are <strong>findable, accessible, interoperable, and reusable (FAIR)</strong> in the <a href="https://data.niaid.nih.gov/">NIAID Data Ecosystem Discovery Portal</a>.</p>
+      <p class="cite">Primary source: <a href="https://raw.githubusercontent.com/go-fair-us/ai-blueprint-core/refs/heads/master/docs/NIAID_Blueprint_v2_26Sep2025_forExternal.md">NIAID Blueprint for Digital Objects v2 (Markdown)</a>.</p>
+    </section>
+
+    <section>
+      <h2>The five areas (high level)</h2>
+      <div class="areas">
+        <div class="area-card"><strong>1. Metadata schema</strong> — Minimal schema.org elements (Table 1) for datasets.</div>
+        <div class="area-card"><strong>2. Persistent identifiers</strong> — DOIs, ORCID, ROR, taxon/ontology IDs where required.</div>
+        <div class="area-card"><strong>3. APIs &amp; machine access</strong> — JSON-LD and machine-readable exposure.</div>
+        <div class="area-card"><strong>4. Citation</strong> — How users should cite datasets and related objects.</div>
+        <div class="area-card"><strong>5. Outreach &amp; training</strong> — Points of contact and guidance for communities.</div>
+      </div>
+      <p>Later lessons unpack each area; reference sheets will live in <code>reference/</code> as you progress.</p>
+    </section>
+
+    <section>
+      <h2>Who this is for</h2>
+      <ul>
+        <li><strong>Data generators</strong> — metadata and citation you can supply at deposit time.</li>
+        <li><strong>Repository owners / curators</strong> — portal-ready description, PIDs, policies.</li>
+        <li><strong>Developers</strong> — APIs, JSON-LD, validation against the spec.</li>
+      </ul>
+    </section>
+
+    <div class="callout">
+      <strong>Optional:</strong> The repo includes an interactive POC study guide in <code>lesson/</code> (six modules). Use it for extra practice; new structured lessons stay in <code>lessons/*.html</code>.
+    </div>
+
+    <div class="quiz-container">
+      <h3>Check your understanding</h3>
+      <p>Which area is <em>most</em> about machine-readable dataset description for integrators?</p>
+      <label class="quiz-option"><input type="radio" name="q1" value="a"> Outreach lists training contacts for each repository site.</label>
+      <label class="quiz-option"><input type="radio" name="q1" value="b"> APIs expose JSON-LD metadata for automated harvesting.</label>
+      <label class="quiz-option"><input type="radio" name="q1" value="c"> Citation pages show how users credit dataset authors.</label>
+      <label class="quiz-option"><input type="radio" name="q1" value="d"> PIDs assign ORCID identifiers to every file checksum.</label>
+      <button type="button" id="check-btn">Check answer</button>
+      <p class="feedback" id="feedback" aria-live="polite"></p>
+    </div>
+
+    <section>
+      <h2>Next step</h2>
+      <p>Reflect: which of the five areas is weakest for <em>your</em> repository today? Tell your teaching agent—that sets the zone of proximal development for lesson 2.</p>
+      <p><strong>Ask follow-up questions anytime</strong>—your agent is the teacher for this workspace.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>NIAID Blueprint for Digital Objects · Lesson 0001</p>
+  </footer>
+  <script>
+    document.getElementById('check-btn').addEventListener('click', function () {
+      var el = document.querySelector('input[name="q1"]:checked');
+      var fb = document.getElementById('feedback');
+      if (!el) { fb.textContent = 'Select an option first.'; return; }
+      fb.textContent = el.value === 'b'
+        ? 'Correct. APIs and machine-accessible metadata let portals and tools harvest structured descriptions.'
+        : 'Not quite. Re-read the five areas—think about what integrators need to read automatically.';
+    });
+  </script>
+</body>
+</html>

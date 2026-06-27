@@ -28,12 +28,15 @@
 
 7. **Practical Workflows**
    - URL → LLM extraction → JSON-LD → SHACL validation → HITL
-   - Existing skills: `blueprint-metadata-extract`, `dataset-intake`, `fair-assess`
+   - **Run repo skills** (do not duplicate their flows in prose):
+     - `blueprint-metadata-extract` — fetch and extract from a resource URL
+     - `dataset-intake` — interview → `Dataset` JSON-LD
+   - Add `reference/` cheat sheets for JSON-LD shape and validation steps
 
 8. **Capstone / Hands-on Application**
-   - Generate real metadata records
-   - Produce a repository work plan
-   - Assessment and gap report
+   - Generate real metadata records via `dataset-intake` or `blueprint-metadata-extract`
+   - Run `fair-assess` for a prioritized gap report aligned to `MISSION.md`
+   - Optional: repository work plan (see `prompts/workPlanInterview.md` in repo root)
 
 ## Cross-cutting Themes
 - Glossary discipline throughout
