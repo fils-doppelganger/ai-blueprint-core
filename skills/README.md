@@ -1,6 +1,6 @@
 # NIAID Blueprint Claude Skills
 
-Three Claude Code skills for working with the [NIAID Blueprint for Digital Objects](../docs/NIAID_Blueprint_v2_26Sep2025_forExternal.md). Skills are installed automatically when Claude Code is opened in this project.
+Six Claude Code skills for working with the [NIAID Blueprint for Digital Objects](../docs/NIAID_Blueprint_v2_26Sep2025_forExternal.md) and related research transparency workflows. Skills are installed automatically when Claude Code is opened in this project.
 
 ---
 
@@ -55,9 +55,55 @@ See also: `docs/metadataGeneration.md`
 
 ---
 
+## `/model-statement` — Model Influence Statement
+
+Conducts a conversational interview to collect structured disclosures about machine-learning model use in a research work, branching on whether a model was used, then produces a complete Model Influence Statement and a one-paragraph acknowledgment summary. Mirrors the upstream [Model Influence Statement Generator](https://model-influence-statement-generator.netlify.app/).
+
+**Use when:** An author wants to create, fill out, or export a model influence statement, disclose ML model use in a publication, or acknowledge AI assistance in research.
+
+**How to invoke:**
+```
+/model-statement
+```
+
+**Output:** A Markdown statement with section headings matching the upstream template, plus a plain-text acknowledgment paragraph suitable for manuscripts or README files. Optionally, timestamped JSON and file artifacts via `scripts/save_statement.py`.
+
+---
+
+## `/blueprint-citation` — Citation Text and BibTeX
+
+Conducts a conversational interview to collect citation-relevant metadata, then produces formatted citation text and BibTeX entries aligned with the Blueprint's minimal citation requirements (Section 4). Supports original-data deposits, reused-data attribution, and repository-level citations with PID integration.
+
+**Use when:** A repository owner needs a "How to Cite" page draft, or a researcher needs copy-ready citation examples (APA, MLA, Chicago, NLM) and BibTeX for a dataset, software object, or repository.
+
+**How to invoke:**
+```
+/blueprint-citation
+/blueprint-citation ImmPort SDY998
+```
+
+**Output:** Formatted citations in the requested styles, a BibTeX code block, and — for repository owners — a publishable "How to Cite" section with original-data, reused-data, and repository-level examples. Optionally, a one-paragraph acknowledgment for manuscripts or README files.
+
+---
+
+## `/teach-blueprint` — Blueprint Teaching Course
+
+Teaches the NIAID Blueprint through stateful, multi-session lessons grounded in a persistent teaching workspace. Creates or extends `MISSION.md`, HTML lessons, learning records, a glossary, and reference sheets — citing high-trust sources from `RESOURCES.md` rather than lecturing from memory.
+
+**Use when:** A learner or trainer wants structured, progressive Blueprint lessons across multiple sessions toward a concrete repository goal — for example, "teach me the Blueprint" or "Blueprint course."
+
+**How to invoke:**
+```
+/teach-blueprint
+```
+
+**Output:** Workspace artifacts under `.claude/skills/teach-blueprint/` by default (or a user-chosen path): `MISSION.md`, `lessons/000N-slug.html`, `learning-records/`, `GLOSSARY.md`, `reference/*.html`, and updated `NOTES.md`. Later curriculum lessons assign hands-on work using `fair-assess`, `dataset-intake`, and `blueprint-metadata-extract`.
+
+---
+
 ## Skill files
 
-All three skills live in `.claude/skills/` and follow the standard Claude Code skill layout:
+All six skills live in `.claude/skills/` and follow the standard Claude Code skill layout:
 
 ```
 .claude/skills/
@@ -77,8 +123,37 @@ All three skills live in `.claude/skills/` and follow the standard Claude Code s
 │   │   └── jsonld-structure.md
 │   └── assets/
 │       └── blank-dataset.jsonld
-└── blueprint-metadata-extract/
+├── blueprint-metadata-extract/
+│   ├── SKILL.md
+│   └── references/
+│       └── extraction-workflow.md
+├── model-statement/
+│   ├── SKILL.md
+│   ├── statement-template.md
+│   ├── example-influence-statement.md
+│   ├── scripts/
+│   │   └── save_statement.py
+│   └── tests/
+│       └── test_save_statement.py
+├── blueprint-citation/
+│   ├── SKILL.md
+│   ├── citation-template.md
+│   ├── example-citation-output.md
+│   ├── scripts/
+│   │   └── save_citation.py
+│   └── references/
+│       └── citation-guidelines.md
+└── teach-blueprint/
     ├── SKILL.md
-    └── references/
-        └── extraction-workflow.md
+    ├── MISSION-EXAMPLE.md
+    ├── references/
+    │   ├── teaching-phases.md
+    │   └── curriculum-map.md
+    ├── formats/
+    ├── templates/
+    │   └── lesson-template.html
+    ├── lessons/
+    ├── reference/
+    └── assets/
+        └── shared.css
 ```
